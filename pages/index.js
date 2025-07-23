@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ItemPreview from "@/components/ItemPreview";
 import useSWR from "swr";
 import { StyledLink } from "@/components/StyledLink";
 
@@ -9,17 +10,22 @@ const ListContainer = styled.ul`
   gap: 20px;
   width: 100%;
 `;
-const FixedLink = styled(StyledLink)`
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-`;
-
 
 export default function HomePage() {
+  const { data } = useSWR("/api/shoppingItems", { fallbackData: [] });
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <>
+      <ListContainer>
+        {data.map((shoppingItem) => {
+          <li key={shoppingItem._id}>
+            <ItemPreview
+              name={shoppingItem.name}
+              amount={shoppingItem.amount}
+              category={shoppingItem.category}
+            />
+          </li>;
+        })}
+      </ListContainer>
+    </>
   );
 }
