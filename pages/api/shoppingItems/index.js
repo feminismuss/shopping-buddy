@@ -7,7 +7,6 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     try {
       const items = await ShoppingItem.find();
-    //   console.log("📦 Items aus MongoDB:", items);
       return response.status(200).json(items);
     } catch (error) {
       return response.status(500).json({ message: "Server error", error });

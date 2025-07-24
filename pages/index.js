@@ -17,10 +17,8 @@ export default function HomePage() {
   if (isLoading) return <p>Bilder werden aus dem Keller geholt</p>;
   if (error) return <p>Fehler beim Laden: {error.message}</p>;
   if (!data) return null;
-  console.log("data from API:", data);
 
   return (
-    <>
       <ListContainer>
         {data.map((shoppingItem) => (
           <li key={shoppingItem._id}>
@@ -32,6 +30,5 @@ export default function HomePage() {
           </li>
         ))}
       </ListContainer>
-    </>
   );
 }
