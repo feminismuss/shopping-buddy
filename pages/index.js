@@ -19,7 +19,6 @@ export default function HomePage() {
   if (!data) return null;
 
   return (
-    <>
       <ListContainer>
         {data.map((shoppingItem) => (
           <li key={shoppingItem._id}>
@@ -31,6 +30,5 @@ export default function HomePage() {
           </li>
         ))}
       </ListContainer>
-    </>
   );
 }
