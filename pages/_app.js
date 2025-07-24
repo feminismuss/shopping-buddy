@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
           if (!response.ok) {
             throw new Error(`Request with ${JSON.stringify(args)}failed.`);
           }
-          return await response.JSON();
+          return await response.json();
         },
       }}
     >
