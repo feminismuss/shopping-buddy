@@ -12,7 +12,6 @@ const shoppingItemSchema = new mongoose.Schema(
     category: String,
     comment: String,
   },
-  { collection: "shoppingitems" }
 );
 
 const ShoppingItem =
