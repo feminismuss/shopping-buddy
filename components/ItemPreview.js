@@ -21,7 +21,6 @@ export default function ItemPreview({ name, quantity, category }) {
   return (
     <PreviewItem>
       <HeaderRow>
-        {" "}
         <h3>{name}</h3>
         <p>{quantity}</p>
       </HeaderRow>
