@@ -22,14 +22,21 @@ const Figure = styled.figure`
   line-height: 0.2rem;
 `;
 
-export default function ItemDetails({ name, quantity, category }) {
+export default function ItemDetails({
+  name,
+  quantity,
+  category,
+  imageUrl,
+  comment,
+  id,
+}) {
   return (
-      <Article>
-      <Link href={`places/${id}`}>
+    <Article>
+      <Link href={`shoppingitems/${_id}`}>
         <Figure>
           <ImageContainer>
             <StyledImage
-              src={image}
+              src={imageUrl}
               fill
               sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
@@ -39,8 +46,10 @@ export default function ItemDetails({ name, quantity, category }) {
           </ImageContainer>
           <figcaption>
             <strong>{name}</strong>
+            <p>{quantity}</p>
           </figcaption>
-          <p>{location}</p>
+          <p>category</p>
+          <p>comment</p>
         </Figure>
       </Link>
     </Article>
