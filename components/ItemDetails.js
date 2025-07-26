@@ -33,7 +33,7 @@ export default function ItemDetails({
 }) {
   return (
     <Article>
-      <Link href={`shoppingitems/${_id}`}>
+      <Link href={`shoppingitems/${id}`}>
         <Figure>
           <ImageContainer>
             <StyledImage

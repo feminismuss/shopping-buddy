@@ -19,16 +19,17 @@ export default function HomePage() {
   if (!data) return null;
 
   return (
-      <ListContainer>
-        {data.map((shoppingItem) => (
-          <li key={shoppingItem._id}>
-            <ItemPreview
-              name={shoppingItem.name}
-              quantity={shoppingItem.quantity}
-              category={shoppingItem.category}
-            />
-          </li>
-        ))}
-      </ListContainer>
+    <ListContainer>
+      {data.map((shoppingItem) => (
+        <li key={shoppingItem._id}>
+          <ItemPreview
+            id={shoppingItem._id}
+            name={shoppingItem.name}
+            quantity={shoppingItem.quantity}
+            category={shoppingItem.category}
+          />
+        </li>
+      ))}
+    </ListContainer>
   );
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -17,14 +16,18 @@ const HeaderRow = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-export default function ItemPreview({ name, quantity, category }) {
+export default function ItemPreview({ name, quantity, category, id }) {
   return (
-    <PreviewItem>
-      <HeaderRow>
-        <h3>{name}</h3>
-        <p>{quantity}</p>
-      </HeaderRow>
-      <p>#{category}</p>
-    </PreviewItem>
+    <Link href={`shoppingitems/${id}`} passHref>
+      {/* <a style={{ textDecoration: "none", color: "inherit" }}> */}
+        <PreviewItem>
+          <HeaderRow>
+            <h3>{name}</h3>
+            <p>{quantity}</p>
+          </HeaderRow>
+          <p>#{category}</p>
+        </PreviewItem>
+      {/* </a> */}
+    </Link>
   );
 }
