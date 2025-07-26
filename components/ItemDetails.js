@@ -33,26 +33,24 @@ export default function ItemDetails({
 }) {
   return (
     <Article>
-      <Link href={`shoppingitems/${id}`}>
-        <Figure>
-          <ImageContainer>
-            <StyledImage
-              src={imageUrl}
-              fill
-              sizes="(max-width: 768px) 100vw,
+      <Figure>
+        <ImageContainer>
+          <StyledImage
+            src={imageUrl}
+            fill
+            sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-              alt=""
-            />
-          </ImageContainer>
-          <figcaption>
-            <strong>{name}</strong>
-            <p>{quantity}</p>
-          </figcaption>
-          <p>#{category}</p>
-          <p>{comment}</p>
-        </Figure>
-      </Link>
+            alt=""
+          />
+        </ImageContainer>
+        <figcaption>
+          <strong>{name}</strong>
+          <p>{quantity}</p>
+        </figcaption>
+        <p>#{category}</p>
+        <p>{comment}</p>
+      </Figure>
     </Article>
   );
 }
