@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { StyledImage } from "./StyledImage";
 
 const Article = styled.article`
   border: 1px solid black;
@@ -48,8 +49,8 @@ export default function ItemDetails({
             <strong>{name}</strong>
             <p>{quantity}</p>
           </figcaption>
-          <p>category</p>
-          <p>comment</p>
+          <p>#{category}</p>
+          <p>{comment}</p>
         </Figure>
       </Link>
     </Article>
