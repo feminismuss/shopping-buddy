@@ -15,23 +15,20 @@ const HeaderRow = styled.div`
   align-items: center;
   margin-bottom: 0.5rem;
 `;
-const LinkWrapper = styled.a`
-  text-decoration: none;
-  color: inherit;
-`;
 
 export default function ItemPreview({ name, quantity, category, id }) {
   return (
-    <Link href={`shoppingitems/${id}`} passHref>
-      <LinkWrapper>
-        <PreviewItem>
-          <HeaderRow>
-            <h3>{name}</h3>
-            <p>{quantity}</p>
-          </HeaderRow>
-          <p>#{category}</p>
-        </PreviewItem>
-      </LinkWrapper>
+    <Link
+      href={`/shoppingItems/${id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <PreviewItem id={id}>
+        <HeaderRow>
+          <h3>{name}</h3>
+          <p>{quantity}</p>
+        </HeaderRow>
+        <p>#{category}</p>
+      </PreviewItem>
     </Link>
   );
 }
