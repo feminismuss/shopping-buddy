@@ -10,6 +10,11 @@ const ListContainer = styled.ul`
   gap: 20px;
   width: 100%;
 `;
+const FixedLink = styled(StyledLink)`
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+`;
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR("/api/shoppingItems");
@@ -19,17 +24,20 @@ export default function HomePage() {
   if (!data) return null;
 
   return (
-    <ListContainer>
-      {data.map((shoppingItem) => (
-        <li key={shoppingItem._id}>
-          <ItemPreview
-            id={shoppingItem._id}
-            name={shoppingItem.name}
-            quantity={shoppingItem.quantity}
-            category={shoppingItem.category}
-          />
-        </li>
-      ))}
-    </ListContainer>
+    <>
+      <ListContainer>
+        {data.map((shoppingItem) => (
+          <li key={shoppingItem._id}>
+            <ItemPreview
+              id={shoppingItem._id}
+              name={shoppingItem.name}
+              quantity={shoppingItem.quantity}
+              category={shoppingItem.category}
+            />
+          </li>
+        ))}
+      </ListContainer>
+      <FixedLink href="/addItem">+ item</FixedLink>
+    </>
   );
 }
