@@ -1,6 +1,18 @@
 import TitleBar from "./TitleBar";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Head from "next/head";
+
+const GlobalStyles = createGlobalStyle`
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #77af46ff;
+  }
+`;
 
 const Main = styled.main`
   display: grid;
@@ -17,6 +29,7 @@ export default function Layout({ children }) {
       <Head>
         <title>Shopping Buddy</title>
       </Head>
+      <GlobalStyles />
       <TitleBar />
       <Main>{children}</Main>
     </>

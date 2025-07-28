@@ -11,7 +11,7 @@ const Article = styled.article`
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 10rem;
+  height: 15rem;
   margin-bottom: 20px;
 `;
 
