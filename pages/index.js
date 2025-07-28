@@ -14,8 +14,8 @@ const ListContainer = styled.ul`
 export default function HomePage() {
   const { data, error, isLoading } = useSWR("/api/shoppingItems");
 
-  if (isLoading) return <p>Bilder werden aus dem Keller geholt</p>;
-  if (error) return <p>Fehler beim Laden: {error.message}</p>;
+  if (isLoading) return <p>Loading Shoppinglist</p>;
+  if (error) return <p>Error while loading: {error.message}</p>;
   if (!data) return null;
 
   return (
