@@ -13,7 +13,7 @@ export default function AddShoppingItem() {
     if (response.ok) {
       router.push("/");
     } else {
-      console.error("Save failed");
+      console.error("Saving failed");
     }
   }
   return (
