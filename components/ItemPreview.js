@@ -20,7 +20,7 @@ export default function ItemPreview({ name, quantity, category, id }) {
   return (
     <Link
       href={`/shoppingItems/${id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
+      // style={{ textDecoration: "none", color: "inherit" }}
     >
       <PreviewItem id={id}>
         <HeaderRow>
