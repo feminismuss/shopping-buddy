@@ -13,6 +13,13 @@ export const Input = styled.input`
   border-radius: 0.5rem;
 `;
 
+export const Select = styled.select`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
 export const Textarea = styled.textarea`
   font-family: inherit;
   border: 1px solid black;
@@ -67,7 +74,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
         defaultValue={defaultData?.quantity}
       />
       <Label htmlFor="category">Category</Label>
-      <select
+      <Select
         id="category"
         name="category"
         defaultValue={defaultData?.category || ""}
@@ -80,7 +87,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </option>
         ))}
-      </select>
+      </Select>
       <Label htmlFor="comment">Comment</Label>
       <Textarea
         name="comment"
@@ -90,7 +97,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
         defaultValue={defaultData?.description}
       ></Textarea>
       <StyledButton type="submit">
-        {defaultData ? "Update place" : "Add place"}
+        {defaultData ? "Update Item" : "Add Item"}
       </StyledButton>
     </FormContainer>
   );
