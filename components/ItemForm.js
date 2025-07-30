@@ -31,25 +31,30 @@ export const Label = styled.label`
   font-weight: bold;
 `;
 
-export default function Form({ onSubmit, formName, defaultData }) {
+export default function Form({
+  onSubmit,
+  formName,
+  defaultData,
+  categories = [],
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     onSubmit(data);
   }
-  const categories = [
-    "Dairy",
-    "Bakery",
-    "Fruits",
-    "Vegetables",
-    "Meat",
-    "Beverages",
-    "Snacks",
-    "Household",
-    "Personal Care",
-    "Other",
-  ];
+  // const categories = [
+  //   "Dairy",
+  //   "Bakery",
+  //   "Fruits",
+  //   "Vegetables",
+  //   "Meat",
+  //   "Beverages",
+  //   "Snacks",
+  //   "Household",
+  //   "Personal Care",
+  //   "Other",
+  // ];
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       <Label htmlFor="name">Name</Label>
