@@ -58,6 +58,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
         name="name"
         type="text"
         defaultValue={defaultData?.name}
+        required
       />
       <Label htmlFor="image-url">Image Url</Label>
       <Input
@@ -72,12 +73,14 @@ export default function Form({ onSubmit, formName, defaultData }) {
         name="quantity"
         type="text"
         defaultValue={defaultData?.quantity}
+        required
       />
       <Label htmlFor="category">Category</Label>
       <Select
         id="category"
         name="category"
         defaultValue={defaultData?.category || ""}
+        required
       >
         <option value="" disabled>
           Bitte wählen

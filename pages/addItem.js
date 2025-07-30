@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ItemForm from "../components/ItemForm";
+import { StyledLink } from "@/components/StyledLink";
 
 export default function AddShoppingItem() {
   const router = useRouter();
@@ -19,6 +20,9 @@ export default function AddShoppingItem() {
   return (
     <>
       <h1>Add new Item</h1>
+      <StyledLink href={"/"} $justifySelf="start">
+        back
+      </StyledLink>
       <ItemForm onSubmit={handleAddShoppingItem} formName="new-item-form" />
     </>
   );
