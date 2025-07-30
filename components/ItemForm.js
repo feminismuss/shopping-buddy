@@ -36,6 +36,7 @@ export default function Form({
   formName,
   defaultData,
   categories = [],
+  loadingCategories = false,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -43,18 +44,7 @@ export default function Form({
     const data = Object.fromEntries(formData);
     onSubmit(data);
   }
-  // const categories = [
-  //   "Dairy",
-  //   "Bakery",
-  //   "Fruits",
-  //   "Vegetables",
-  //   "Meat",
-  //   "Beverages",
-  //   "Snacks",
-  //   "Household",
-  //   "Personal Care",
-  //   "Other",
-  // ];
+
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       <Label htmlFor="name">Name</Label>
@@ -86,13 +76,18 @@ export default function Form({
         name="category"
         defaultValue={defaultData?.category || ""}
         required
+        disabled={loadingCategories || categories.length === 0}
       >
         <option value="" disabled>
-          Bitte wählen
+          {loadingCategories
+            ? "Loading Categories…"
+            : categories.length === 0
+            ? "No Categories to choose"
+            : "Please choose category"}
         </option>
         {categories.map((cat) => (
-          <option key={cat} value={cat}>
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          <option key={cat._id ?? cat.name} value={cat.name ?? cat}>
+            {cat.name ?? cat}
           </option>
         ))}
       </Select>
