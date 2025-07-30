@@ -1,9 +1,16 @@
 import { useRouter } from "next/router";
 import ItemForm from "../components/ItemForm";
 import { StyledLink } from "@/components/StyledLink";
+import useSWR from "swr";
 
 export default function AddShoppingItem() {
   const router = useRouter();
+
+  const {
+    data: categories = [],
+    isLoading: loadingCategories,
+    error: categoriesError,
+  } = useSWR("/api/categories");
 
   async function handleAddShoppingItem(data) {
     const response = await fetch("/api/shoppingItems", {
@@ -23,7 +30,15 @@ export default function AddShoppingItem() {
       <StyledLink href={"/"} $justifySelf="start">
         back
       </StyledLink>
-      <ItemForm onSubmit={handleAddShoppingItem} formName="new-item-form" />
+
+      {categoriesError && <p>no categories to choose</p>}
+
+      <ItemForm
+        onSubmit={handleAddShoppingItem}
+        formName="new-item-form"
+        categories={categories}
+        loadingCategories={loadingCategories}
+      />
     </>
   );
 }
