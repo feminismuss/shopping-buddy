@@ -4,6 +4,7 @@ import { StyledLink } from "@/components/StyledLink";
 import ItemDetails from "@/components/ItemDetails";
 import { useState } from "react";
 import { StyledButton } from "@/components/StyledButton";
+import ItemForm from "@/components/ItemForm";
 
 export default function ItemDetailsPage() {
   const [showEditItemForm, setShowEditItemForm] = useState(false);
@@ -19,7 +20,7 @@ export default function ItemDetailsPage() {
   } = useSWR(id ? `/api/shoppingItems/${id}` : null);
 
   async function handleEditItem(data) {
-    const response = await fetch(`api/shoppingItems/${id}`, {
+    const response = await fetch(`/api/shoppingItems/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -29,7 +30,7 @@ export default function ItemDetailsPage() {
       console.error(response.status);
       return;
     }
-    mutate();
+    await mutate();
     setShowEditItemForm(false);
   }
 
@@ -42,17 +43,27 @@ export default function ItemDetailsPage() {
       <StyledLink href={"/"} $justifySelf="start">
         back
       </StyledLink>
-      <ItemDetails
-        id={item._id}
-        name={item.name}
-        quantity={item.quantity}
-        category={item.category}
-        comment={item.comment}
-        imageUrl={item.imageUrl}
-      />
-      <StyledButton onClick={() => setShowEditItemForm(!showEditItemForm)}>
-        edit
-      </StyledButton>
+      {showEditItemForm ? (
+        <ItemForm
+          formName="edit-item"
+          defaultData={item}
+          onSubmit={handleEditItem}
+        />
+      ) : (
+        <>
+          <ItemDetails
+            id={item._id}
+            name={item.name}
+            quantity={item.quantity}
+            category={item.category}
+            comment={item.comment}
+            imageUrl={item.imageUrl}
+          />
+          <StyledButton onClick={() => setShowEditItemForm(!showEditItemForm)}>
+            edit
+          </StyledButton>
+        </>
+      )}
     </>
   );
 }

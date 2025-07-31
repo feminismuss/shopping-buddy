@@ -1,36 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 
-export const FormContainer = styled.form`
-  display: grid;
-  gap: 0.5rem;
-`;
-
-export const Input = styled.input`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`;
-
-export const Select = styled.select`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`;
-
-export const Textarea = styled.textarea`
-  font-family: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-`;
-
-export const Label = styled.label`
-  font-weight: bold;
-`;
-
 export default function Form({
   onSubmit,
   formName,
@@ -58,9 +28,9 @@ export default function Form({
       <Label htmlFor="image-url">Image Url</Label>
       <Input
         id="image-url"
-        name="image"
+        name="imageUrl"
         type="text"
-        defaultValue={defaultData?.image}
+        defaultValue={defaultData?.imageUrl}
       />
       <Label htmlFor="quantity">Quantity</Label>
       <Input
@@ -97,7 +67,7 @@ export default function Form({
         id="comment"
         cols="30"
         rows="10"
-        defaultValue={defaultData?.description}
+        defaultValue={defaultData?.comment}
       ></Textarea>
       <StyledButton type="submit">
         {defaultData ? "Update Item" : "Add Item"}
@@ -105,3 +75,33 @@ export default function Form({
     </FormContainer>
   );
 }
+
+export const FormContainer = styled.form`
+  display: grid;
+  gap: 0.5rem;
+`;
+
+export const Input = styled.input`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+export const Select = styled.select`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+export const Textarea = styled.textarea`
+  font-family: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
+export const Label = styled.label`
+  font-weight: bold;
+`;
