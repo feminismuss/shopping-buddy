@@ -8,7 +8,8 @@ export const StyledButton = styled.button`
   color: black;
   text-decoration: none;
   font-weight: bold;
-  border: none;
+  cursor: pointer;
+  // border: none;
   font-size: inherit;
 
   ${({ $variant }) =>
