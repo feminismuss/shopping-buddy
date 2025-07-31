@@ -10,26 +10,34 @@ const ListContainer = styled.ul`
   gap: 20px;
   width: 100%;
 `;
+const FixedLink = styled(StyledLink)`
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+`;
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR("/api/shoppingItems");
 
-  if (isLoading) return <p>Bilder werden aus dem Keller geholt</p>;
-  if (error) return <p>Fehler beim Laden: {error.message}</p>;
+  if (isLoading) return <p>Loading Shoppinglist</p>;
+  if (error) return <p>Error while loading: {error.message}</p>;
   if (!data) return null;
 
   return (
-    <ListContainer>
-      {data.map((shoppingItem) => (
-        <li key={shoppingItem._id}>
-          <ItemPreview
-            id={shoppingItem._id}
-            name={shoppingItem.name}
-            quantity={shoppingItem.quantity}
-            category={shoppingItem.category}
-          />
-        </li>
-      ))}
-    </ListContainer>
+    <>
+      <ListContainer>
+        {data.map((shoppingItem) => (
+          <li key={shoppingItem._id}>
+            <ItemPreview
+              id={shoppingItem._id}
+              name={shoppingItem.name}
+              quantity={shoppingItem.quantity}
+              category={shoppingItem.category}
+            />
+          </li>
+        ))}
+      </ListContainer>
+      <FixedLink href="/addItem">+ item</FixedLink>
+    </>
   );
 }

@@ -12,6 +12,8 @@ const GlobalStyles = createGlobalStyle`
   a:hover {
     color: #77af46ff;
   }
+    h1 {
+    text-align: center;}
 `;
 
 const Main = styled.main`

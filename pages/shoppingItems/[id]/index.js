@@ -18,11 +18,11 @@ export default function ItemDetailsPage() {
     mutate,
   } = useSWR(id ? `/api/shoppingItems/${id}` : null);
 
-  async function handleEditItem(itemData) {
+  async function handleEditItem(data) {
     const response = await fetch(`api/shoppingItems/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(itemData),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
