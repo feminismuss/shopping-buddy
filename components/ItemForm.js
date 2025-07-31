@@ -87,7 +87,7 @@ export default function Form({
         </option>
         {categories.map((cat) => (
           <option key={cat._id ?? cat.name} value={cat.name ?? cat}>
-            {cat.name ?? cat}
+            {cat.name}
           </option>
         ))}
       </Select>
