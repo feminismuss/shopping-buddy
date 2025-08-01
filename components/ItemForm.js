@@ -3,6 +3,7 @@ import { StyledButton } from "./StyledButton";
 
 export default function Form({
   onSubmit,
+  onCancel,
   formName,
   defaultData,
   categories = [],
@@ -10,9 +11,17 @@ export default function Form({
 }) {
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
+
+    const ok = window.confirm(defaultData ? "save changes?" : "New Item?");
+    if (!ok) return;
+
     onSubmit(data);
+  }
+  function handleCancelClick() {
+    const ok = window.confirm("changes will not be saved. Cancel anyway?");
+    if (ok) onCancel?.();
   }
 
   return (
@@ -69,9 +78,14 @@ export default function Form({
         rows="10"
         defaultValue={defaultData?.comment}
       ></Textarea>
-      <StyledButton type="submit">
-        {defaultData ? "Update Item" : "Add Item"}
-      </StyledButton>
+      <ButtonRow>
+        <StyledButton type="submit">
+          {defaultData ? "Update Item" : "Add Item"}
+        </StyledButton>
+        <StyledButton type="button" onClick={handleCancelClick}>
+          Cancel
+        </StyledButton>
+      </ButtonRow>
     </FormContainer>
   );
 }
@@ -104,4 +118,9 @@ export const Textarea = styled.textarea`
 
 export const Label = styled.label`
   font-weight: bold;
+`;
+const ButtonRow = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
 `;

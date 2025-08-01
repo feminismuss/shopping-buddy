@@ -19,6 +19,12 @@ export default function ItemDetailsPage() {
     mutate,
   } = useSWR(id ? `/api/shoppingItems/${id}` : null);
 
+  const {
+    data: categories = [],
+    isLoading: loadingCategories,
+    error: categoriesError,
+  } = useSWR("/api/categories");
+
   async function handleEditItem(data) {
     const response = await fetch(`/api/shoppingItems/${id}`, {
       method: "PUT",
@@ -31,11 +37,16 @@ export default function ItemDetailsPage() {
       return;
     }
     await mutate();
+    router.push("/");
     setShowEditItemForm(false);
   }
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading items</p>;
+  function handleCancelClick() {
+    router.push("/");
+  }
+
+  if (isLoading || loadingCategories) return <p>Loading...</p>;
+  if (error || categoriesError) return <p>Error loading items</p>;
   if (!item) return <p>Item not found</p>;
 
   return (
@@ -48,6 +59,8 @@ export default function ItemDetailsPage() {
           formName="edit-item"
           defaultData={item}
           onSubmit={handleEditItem}
+          categories={categories}
+          onCancel={() => setShowEditItemForm(false)}
         />
       ) : (
         <>
