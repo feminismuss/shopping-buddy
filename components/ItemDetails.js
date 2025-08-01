@@ -3,26 +3,6 @@ import Link from "next/link";
 import styled from "styled-components";
 import { StyledImage } from "./StyledImage";
 
-const Article = styled.article`
-  border: 1px solid black;
-  border-radius: 0.8rem;
-  padding: 0.5rem;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  height: 15rem;
-  margin-bottom: 20px;
-`;
-
-const Figure = styled.figure`
-  color: black;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  line-height: 0.2rem;
-`;
-
 export default function ItemDetails({
   name,
   quantity,
@@ -54,3 +34,22 @@ export default function ItemDetails({
     </Article>
   );
 }
+const Article = styled.article`
+  border: 1px solid black;
+  border-radius: 0.8rem;
+  padding: 0.5rem;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  height: 15rem;
+  margin-bottom: 20px;
+`;
+
+const Figure = styled.figure`
+  color: black;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  line-height: 0.2rem;
+`;
