@@ -64,14 +64,7 @@ export default function ItemDetailsPage() {
         />
       ) : (
         <>
-          <ItemDetails
-            id={item._id}
-            name={item.name}
-            quantity={item.quantity}
-            category={item.category}
-            comment={item.comment}
-            imageUrl={item.imageUrl}
-          />
+          <ItemDetails item={item} />
           <StyledButton onClick={() => setShowEditItemForm(!showEditItemForm)}>
             edit
           </StyledButton>

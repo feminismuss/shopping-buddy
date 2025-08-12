@@ -22,6 +22,7 @@ export default function Form({
   function handleCancelClick() {
     const ok = window.confirm("changes will not be saved. Cancel anyway?");
     if (ok) onCancel?.();
+    
   }
 
   return (

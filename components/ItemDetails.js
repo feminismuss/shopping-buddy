@@ -3,14 +3,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import { StyledImage } from "./StyledImage";
 
-export default function ItemDetails({
-  name,
-  quantity,
-  category,
-  imageUrl,
-  comment,
-  id,
-}) {
+export default function ItemDetails({ item }) {
+  const { quantity, imageUrl, name, category, comment, id } = item;
   return (
     <Article>
       <Figure>
