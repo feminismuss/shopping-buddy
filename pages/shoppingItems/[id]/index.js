@@ -46,7 +46,7 @@ export default function ItemDetailsPage() {
   }
 
   if (isLoading || loadingCategories) return <p>Loading...</p>;
-  if (error || categoriesError) return <p>Error loading items</p>;
+  if (error || categoriesError) return <p>Error loading item</p>;
   if (!item) return <p>Item not found</p>;
 
   return (
