@@ -14,7 +14,7 @@ export default function Form({
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
-    const ok = window.confirm(defaultData ? "save changes?" : "New Item?");
+    const ok = window.confirm(defaultData ? "Save changes?" : "Save Item?");
     if (!ok) return;
 
     onSubmit(data);
