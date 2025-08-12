@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import ItemForm from "../components/ItemForm";
 import { StyledLink } from "@/components/StyledLink";
 import useSWR from "swr";
+import { useState } from "react";
 
 export default function AddShoppingItem() {
   const router = useRouter();
@@ -24,6 +25,9 @@ export default function AddShoppingItem() {
       console.error("Saving failed");
     }
   }
+  function handleCancelClick() {
+    router.push("/");
+  }
   return (
     <>
       <h1>Add new Item</h1>
@@ -38,6 +42,7 @@ export default function AddShoppingItem() {
         formName="new-item-form"
         categories={categories}
         loadingCategories={loadingCategories}
+        onCancel={handleCancelClick}
       />
     </>
   );
