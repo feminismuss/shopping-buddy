@@ -5,12 +5,20 @@ import { StyledImage } from "./StyledImage";
 
 export default function ItemDetails({ item }) {
   const { quantity, imageUrl, name, category, comment, id } = item;
+
+  const isValidSrc =
+    imageUrl &&
+    (imageUrl.startsWith("/") ||
+      imageUrl.startsWith("http://") ||
+      imageUrl.startsWith("https://"));
+
+  const fallBackSrc = "<ShoppingBag />";
   return (
     <Article>
       <Figure>
         <ImageContainer>
           <StyledImage
-            src={imageUrl}
+            src={isValidSrc ? imageUrl : fallBackSrc}
             fill
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
