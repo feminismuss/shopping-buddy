@@ -1,38 +1,9 @@
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 
-export const FormContainer = styled.form`
-  display: grid;
-  gap: 0.5rem;
-`;
-
-export const Input = styled.input`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`;
-
-export const Select = styled.select`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`;
-
-export const Textarea = styled.textarea`
-  font-family: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-`;
-
-export const Label = styled.label`
-  font-weight: bold;
-`;
-
 export default function Form({
   onSubmit,
+  onCancel,
   formName,
   defaultData,
   categories = [],
@@ -40,9 +11,18 @@ export default function Form({
 }) {
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
+
+    const ok = window.confirm(defaultData ? "Save changes?" : "Save Item?");
+    if (!ok) return;
+
     onSubmit(data);
+  }
+  function handleCancelClick() {
+    const ok = window.confirm("changes will not be saved. Cancel anyway?");
+    if (ok) onCancel?.();
+    
   }
 
   return (
@@ -58,9 +38,9 @@ export default function Form({
       <Label htmlFor="image-url">Image Url</Label>
       <Input
         id="image-url"
-        name="image"
+        name="imageUrl"
         type="text"
-        defaultValue={defaultData?.image}
+        defaultValue={defaultData?.imageUrl}
       />
       <Label htmlFor="quantity">Quantity</Label>
       <Input
@@ -97,11 +77,51 @@ export default function Form({
         id="comment"
         cols="30"
         rows="10"
-        defaultValue={defaultData?.description}
+        defaultValue={defaultData?.comment}
       ></Textarea>
-      <StyledButton type="submit">
-        {defaultData ? "Update Item" : "Add Item"}
-      </StyledButton>
+      <ButtonRow>
+        <StyledButton type="submit">
+          {defaultData ? "Update Item" : "Add Item"}
+        </StyledButton>
+        <StyledButton type="button" onClick={handleCancelClick}>
+          Cancel
+        </StyledButton>
+      </ButtonRow>
     </FormContainer>
   );
 }
+
+export const FormContainer = styled.form`
+  display: grid;
+  gap: 0.5rem;
+`;
+
+export const Input = styled.input`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+export const Select = styled.select`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+export const Textarea = styled.textarea`
+  font-family: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
+export const Label = styled.label`
+  font-weight: bold;
+`;
+const ButtonRow = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+`;
