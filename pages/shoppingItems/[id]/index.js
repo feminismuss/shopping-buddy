@@ -41,6 +41,20 @@ export default function ItemDetailsPage() {
     setShowEditItemForm(false);
   }
 
+  async function handleDeleteItem() {
+    const ok = window.confirm("Really delete this Item?");
+    if (!ok) return;
+
+    const res = await fetch(`/api/shoppingItems/${id}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      router.push("/");
+    } else {
+      console.error("Delete failed");
+    }
+  }
+
   function handleCancelClick() {
     router.push("/");
   }
@@ -68,6 +82,7 @@ export default function ItemDetailsPage() {
           <StyledButton onClick={() => setShowEditItemForm(!showEditItemForm)}>
             edit
           </StyledButton>
+          <StyledButton onClick={handleDeleteItem}>delete</StyledButton>
         </>
       )}
     </>
