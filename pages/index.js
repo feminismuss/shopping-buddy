@@ -54,20 +54,26 @@ export default function HomePage() {
   return (
     <>
       <h2>Shopping List</h2>
-      <ListContainer>
-        {unpurchasedItems.map((shoppingItem) => (
-          <li key={shoppingItem._id}>
-            <ItemPreview
-              id={shoppingItem._id}
-              name={shoppingItem.name}
-              quantity={shoppingItem.quantity}
-              category={shoppingItem.category}
-              purchased={shoppingItem.purchased}
-              onTogglePurchased={() => handleTogglePurchased(shoppingItem._id)}
-            />
-          </li>
-        ))}
-      </ListContainer>
+      {unpurchasedItems.length === 0 ? (
+        <p>All done ;) No items on Shopping List. Add new items.</p>
+      ) : (
+        <ListContainer>
+          {unpurchasedItems.map((shoppingItem) => (
+            <li key={shoppingItem._id}>
+              <ItemPreview
+                id={shoppingItem._id}
+                name={shoppingItem.name}
+                quantity={shoppingItem.quantity}
+                category={shoppingItem.category}
+                purchased={shoppingItem.purchased}
+                onTogglePurchased={() =>
+                  handleTogglePurchased(shoppingItem._id)
+                }
+              />
+            </li>
+          ))}
+        </ListContainer>
+      )}
       {purchasedItems.length > 0 && (
         <>
           <h2>Purchased Items</h2>
