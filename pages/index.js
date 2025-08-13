@@ -12,7 +12,7 @@ const ListContainer = styled.ul`
 `;
 const FixedLink = styled(StyledLink)`
   position: fixed;
-  bottom: 50px;
+  top: 60px;
   right: 50px;
 `;
 

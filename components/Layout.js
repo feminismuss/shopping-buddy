@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
   }
     h1 {
     text-align: center;}
+    
 `;
 
 const Main = styled.main`
