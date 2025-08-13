@@ -5,8 +5,8 @@ import { StyledLink } from "@/components/StyledLink";
 
 const ListContainer = styled.ul`
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   width: 100%;
 `;
