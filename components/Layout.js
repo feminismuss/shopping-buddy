@@ -12,12 +12,18 @@ const GlobalStyles = createGlobalStyle`
   a:hover {
     color: #77af46ff;
   } 
+
+  h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  padding: 0.75rem
+  }
 `;
 
 const Main = styled.main`
   display: grid;
   gap: 0.5 rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
   padding: 0.5rem;
   position: relative;
   width: 95%;

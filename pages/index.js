@@ -10,11 +10,6 @@ const ListContainer = styled.ul`
   gap: 20px;
   width: 100%;
 `;
-const FixedLink = styled(StyledLink)`
-  position: fixed;
-  top: 60px;
-  right: 50px;
-`;
 
 export default function HomePage() {
   const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
@@ -53,7 +48,7 @@ export default function HomePage() {
 
   return (
     <>
-      <h2>Shopping List</h2>
+      <h2>Shopping List with {unpurchasedItems.length} items</h2>
       {unpurchasedItems.length === 0 ? (
         <p>All done ;) No items on Shopping List. Add new items.</p>
       ) : (
@@ -76,7 +71,7 @@ export default function HomePage() {
       )}
       {purchasedItems.length > 0 && (
         <>
-          <h2>Purchased Items</h2>
+          <h2>Purchased Items with {purchasedItems.length} items</h2>
           <ListContainer>
             {purchasedItems.map((item) => (
               <li key={item._id}>
@@ -93,7 +88,6 @@ export default function HomePage() {
           </ListContainer>
         </>
       )}
-      <FixedLink href="/addItem">+ item</FixedLink>
     </>
   );
 }
