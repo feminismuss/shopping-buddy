@@ -43,19 +43,8 @@ export default function ItemPreview({
   category,
   id,
   purchased,
-  mutate,
+  onTogglePurchased,
 }) {
-  const handleTogglePurchased = async (event) => {
-    event.preventDefault(); // verhindert Link-Navigation
-    try {
-      const res = await fetch(`/api/shoppingItems/${id}`, { method: "PATCH" });
-      if (!res.ok) throw new Error("Failed to toggle purchased");
-      await mutate();
-    } catch (error) {
-      console.error("Failed to toggle purchased status:", error);
-    }
-  };
-
   return (
     <PreviewItem id={id} $purchased={purchased}>
       <ItemContent>
@@ -67,7 +56,12 @@ export default function ItemPreview({
             <ItemCategory>#{category}</ItemCategory>
           </ItemInfo>
         </Link>
-        <ToggleButton onClick={handleTogglePurchased}>
+        <ToggleButton
+          onClick={(e) => {
+            e.preventDefault();
+            onTogglePurchased(id);
+          }}
+        >
           {purchased ? (
             <CheckCircle2 color="green" size={22} />
           ) : (
