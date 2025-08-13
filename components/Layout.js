@@ -11,19 +11,16 @@ const GlobalStyles = createGlobalStyle`
 
   a:hover {
     color: #77af46ff;
-  }
-    h1 {
-    text-align: center;}
-    
+  } 
 `;
 
 const Main = styled.main`
   display: grid;
-  gap: 0.5rem;
-  margin-top: 5rem;
+  gap: 0.5 rem;
+  margin-top: 10rem;
   padding: 0.5rem;
   position: relative;
-  width: 100%;
+  width: 95%;
 `;
 
 export default function Layout({ children }) {

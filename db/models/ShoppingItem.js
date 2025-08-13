@@ -4,15 +4,14 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const shoppingItemSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    imageUrl: String,
-    quantity: String,
-    category: String,
-    comment: String,
-  },
-);
+const shoppingItemSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  imageUrl: String,
+  quantity: String,
+  category: String,
+  comment: String,
+  purchased: { type: Boolean, default: false },
+});
 
 const ShoppingItem =
   mongoose.models.ShoppingItem ||

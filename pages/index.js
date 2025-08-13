@@ -17,7 +17,7 @@ const FixedLink = styled(StyledLink)`
 `;
 
 export default function HomePage() {
-  const { data, error, isLoading } = useSWR("/api/shoppingItems");
+  const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
 
   if (isLoading) return <p>Loading Shoppinglist</p>;
   if (error) return <p>Error while loading: {error.message}</p>;
@@ -33,6 +33,8 @@ export default function HomePage() {
               name={shoppingItem.name}
               quantity={shoppingItem.quantity}
               category={shoppingItem.category}
+              purchased={shoppingItem.purchased}
+              mutate={mutate}
             />
           </li>
         ))}

@@ -22,13 +22,21 @@ export default async function handler(request, response) {
       const data = request.body;
       const updated = await ShoppingItem.findByIdAndUpdate(id, data, {
         new: true,
-        runvalidators: true,
+        runValidators: true,
       });
       if (!updated)
         return response.status(404).json({ message: "Item not found" });
       return response.status(200).json({ status: "Item updated" });
     }
-
+    if (request.method === "PATCH") {
+      const item = await ShoppingItem.findById(id);
+      if (!item) {
+        return response.status(404).json({ message: "Item not found" });
+      }
+      item.purchased = !item.purchased;
+      await item.save();
+      return response.status(200).json(item);
+    }
     if (request.method === "DELETE") {
       const deleted = await ShoppingItem.findByIdAndDelete(id);
       if (!deleted)
