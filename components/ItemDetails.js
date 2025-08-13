@@ -12,7 +12,7 @@ export default function ItemDetails({ item }) {
       imageUrl.startsWith("http://") ||
       imageUrl.startsWith("https://"));
 
-  const fallBackSrc = "<ShoppingBag />";
+  const fallBackSrc = "/shopping-bag.png";
   return (
     <Article>
       <Figure>
