@@ -17,7 +17,7 @@ const FilterBar = styled.div`
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
-    margin-left: 10px;
+  margin-left: 10px;
 `;
 const CategoryLabel = styled.label`
   display: flex;
@@ -126,6 +126,7 @@ export default function HomePage() {
               type="checkbox"
               checked={selectedCategories.includes(cat)}
               onChange={() => handleCategoryChange(cat)}
+              aria-label={`Filter by ${cat}`}
             />
             #{cat}
           </CategoryLabel>
