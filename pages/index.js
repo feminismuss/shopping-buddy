@@ -25,6 +25,18 @@ const CategoryLabel = styled.label`
   font-size: 0.9rem;
   cursor: pointer;
 `;
+const ClearButton = styled.button`
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #888;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 0.85rem;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+`;
 
 export default function HomePage() {
   const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
@@ -34,7 +46,7 @@ export default function HomePage() {
     isLoading: loadingCategories,
   } = useSWR("/api/categories");
 
-  const [selectedCategories, setSlectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   if (isLoading || loadingCategories) return <p>Loading Shoppinglist</p>;
   if (error || categoriesError)
@@ -44,11 +56,15 @@ export default function HomePage() {
   const categories = categoriesData.map((cat) => cat.name);
 
   const handleCategoryChange = (category) => {
-    setSlectedCategories((prev) =>
+    setSelectedCategories((prev) =>
       prev.includes(category)
         ? prev.filter((c) => c !== category)
         : [...prev, category]
     );
+  };
+
+  const handleClearFilters = () => {
+    setSelectedCategories([]);
   };
 
   // Filterlogik für mehrere Kategorien
@@ -98,6 +114,9 @@ export default function HomePage() {
             #{cat}
           </CategoryLabel>
         ))}
+        {selectedCategories.length > 0 && (
+          <ClearButton onClick={handleClearFilters}>Clear filters</ClearButton>
+        )}
       </FilterBar>
       <h2>Shopping List with {unpurchasedItems.length} items</h2>
       {unpurchasedItems.length === 0 ? (
