@@ -17,6 +17,7 @@ const FilterBar = styled.div`
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+    margin-left: 10px;
 `;
 const CategoryLabel = styled.label`
   display: flex;
@@ -25,22 +26,16 @@ const CategoryLabel = styled.label`
   padding: 6px 12px;
   border-radius: 0.6rem;
   background-color: ${({ $active }) => ($active ? "#E8EAE5" : "#96BF8A")};
-  color: ${({ $active }) => ($active ? "#96BF8A" : "white")};
+  color: ${({ $active }) => ($active ? "#00412E" : "white")};
   font-weight: 300;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 
   input {
-    accent-color: #96BF8A; /* Farbe der nativen Checkbox */
+    accent-color: #96bf8a; /* Farbe der nativen Checkbox */
     cursor: pointer;
   }
 `;
-//   display: flex;
-//   align-items: center;
-//   gap: 2px;
-//   font-size: 0.9rem;
-//   cursor: pointer;
-// `;
 const ClearButton = styled.button`
   padding: 6px 12px;
   border-radius: 6px;
@@ -55,11 +50,9 @@ const ClearButton = styled.button`
 `;
 const ActiveFilters = styled.p`
   font-size: 0.85rem;
-  color: #555;
-  margin: 0.5rem 0;
+  color: #00412e;
+  margin: 0.5rem 20;
 `;
-
-
 
 export default function HomePage() {
   const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
@@ -148,8 +141,10 @@ export default function HomePage() {
       )}
 
       <h2>Shopping List with {unpurchasedItems.length} items</h2>
-      {unpurchasedItems.length === 0 ? (
-        <p>All done ;) No items on Shopping List. Add new items.</p>
+      {unpurchasedItems.length === 0 && selectedCategories.length > 0 ? (
+        <p>No items found for the selected filters.</p>
+      ) : unpurchasedItems.length === 0 ? (
+        <p>All done 😉 No items on Shopping List. Add new items.</p>
       ) : (
         <ListContainer>
           {unpurchasedItems.map((shoppingItem) => (
