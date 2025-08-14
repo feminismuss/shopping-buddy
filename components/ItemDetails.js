@@ -11,14 +11,16 @@ export default function ItemDetails({ item }) {
     (imageUrl.startsWith("/") ||
       imageUrl.startsWith("http://") ||
       imageUrl.startsWith("https://"));
-
-  const fallBackSrc = "/shopping-bag.png";
   return (
     <Article>
       <Figure>
         <ImageContainer>
           <StyledImage
-            src={isValidSrc ? imageUrl : fallBackSrc}
+            src={
+              isValidSrc
+                ? imageUrl
+                : "https://images.unsplash.com/vector-1740026651945-a57d2f713a93?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
             fill
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,

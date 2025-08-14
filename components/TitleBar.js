@@ -1,17 +1,31 @@
 import styled from "styled-components";
+import { StyledLink } from "@/components/StyledLink";
 
-const Headline = styled.h1`
+const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: white;
+  background-color: #96BF8A; 
+  color: #ffff;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  z-index: 1000;
+`;
+
+const Title = styled.h1`
+  font-size: 1.8rem;
+  font-weight: 500;
   margin: 0;
-  padding: 20px;
-  text-align: center;
-  z-index: 1;
 `;
 
 export default function TitleBar() {
-  return <Headline>Shopping Buddy</Headline>;
+  return (
+    <Header>
+      <Title>Shopping Buddy</Title>
+      <StyledLink href="/addItem">+ item</StyledLink> 
+    </Header>
+  );
 }

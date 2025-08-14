@@ -10,19 +10,26 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a:hover {
-    color: #77af46ff;
+    color: #96BF8A;
+  } 
+
+  h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  padding: 0.75rem
+  color:  #00412E;
+  margin-left: 10px;
   }
-    h1 {
-    text-align: center;}
 `;
 
 const Main = styled.main`
   display: grid;
-  gap: 0.5rem;
+  gap: 0.5 rem;
   margin-top: 5rem;
   padding: 0.5rem;
   position: relative;
   width: 100%;
+  background-color: #E8EAE5;
 `;
 
 export default function Layout({ children }) {

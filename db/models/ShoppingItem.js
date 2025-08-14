@@ -11,7 +11,9 @@ const shoppingItemSchema = new mongoose.Schema(
     quantity: String,
     category: String,
     comment: String,
+    purchased: { type: Boolean, default: false },
   },
+  { timestamps: true }
 );
 
 const ShoppingItem =
