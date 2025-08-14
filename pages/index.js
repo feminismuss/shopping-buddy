@@ -21,10 +21,26 @@ const FilterBar = styled.div`
 const CategoryLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 2px;
-  font-size: 0.9rem;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 0.6rem;
+  background-color: ${({ $active }) => ($active ? "#E8EAE5" : "#96BF8A")};
+  color: ${({ $active }) => ($active ? "#96BF8A" : "white")};
+  font-weight: 300;
   cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  input {
+    accent-color: #96BF8A; /* Farbe der nativen Checkbox */
+    cursor: pointer;
+  }
 `;
+//   display: flex;
+//   align-items: center;
+//   gap: 2px;
+//   font-size: 0.9rem;
+//   cursor: pointer;
+// `;
 const ClearButton = styled.button`
   padding: 6px 12px;
   border-radius: 6px;
@@ -37,6 +53,13 @@ const ClearButton = styled.button`
     background: #e0e0e0;
   }
 `;
+const ActiveFilters = styled.p`
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.5rem 0;
+`;
+
+
 
 export default function HomePage() {
   const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
@@ -118,6 +141,12 @@ export default function HomePage() {
           <ClearButton onClick={handleClearFilters}>Clear filters</ClearButton>
         )}
       </FilterBar>
+      {selectedCategories.length > 0 && (
+        <ActiveFilters>
+          Filtered by: {selectedCategories.join(", ")}
+        </ActiveFilters>
+      )}
+
       <h2>Shopping List with {unpurchasedItems.length} items</h2>
       {unpurchasedItems.length === 0 ? (
         <p>All done ;) No items on Shopping List. Add new items.</p>
