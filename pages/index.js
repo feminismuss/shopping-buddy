@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ItemPreview from "@/components/ItemPreview";
 import useSWR from "swr";
 import { StyledLink } from "@/components/StyledLink";
+import { useState } from "react";
 
 const ListContainer = styled.ul`
   list-style: none;
@@ -10,15 +11,53 @@ const ListContainer = styled.ul`
   gap: 20px;
   width: 100%;
 `;
+const FilterBar = styled.div`
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+const CategoryLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.9rem;
+  cursor: pointer;
+`;
 
 export default function HomePage() {
   const { data, error, isLoading, mutate } = useSWR("/api/shoppingItems");
+  const {
+    data: categoriesData,
+    error: categoriesError,
+    isLoading: loadingCategories,
+  } = useSWR("/api/categories");
 
-  if (isLoading) return <p>Loading Shoppinglist</p>;
-  if (error) return <p>Error while loading: {error.message}</p>;
-  if (!data) return null;
+  const [selectedCategories, setSlectedCategories] = useState([]);
 
-  // 🔹 Toggle-Funktion mit optimistic update
+  if (isLoading || loadingCategories) return <p>Loading Shoppinglist</p>;
+  if (error || categoriesError)
+    return <p>Error while loading: {error.message}</p>;
+  if (!data || !categoriesData) return null;
+
+  const categories = categoriesData.map((cat) => cat.name);
+
+  const handleCategoryChange = (category) => {
+    setSlectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  // Filterlogik für mehrere Kategorien
+  const filteredData =
+    selectedCategories.length === 0
+      ? data
+      : data.filter((item) => selectedCategories.includes(item.category));
+
+  // Toggle-Funktion mit optimistic update
   const handleTogglePurchased = async (id) => {
     // Sofort lokal updaten
     mutate(
@@ -40,14 +79,26 @@ export default function HomePage() {
     }
   };
 
-  // 🔹 Aufteilen in offene & gekaufte Items
-  const unpurchasedItems = data.filter((item) => !item.purchased);
-  const purchasedItems = data
+  // Aufteilen in offene & gekaufte Items
+  const unpurchasedItems = filteredData.filter((item) => !item.purchased);
+  const purchasedItems = filteredData
     .filter((item) => item.purchased)
     .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
   return (
     <>
+      <FilterBar>
+        {categories.map((cat) => (
+          <CategoryLabel key={cat}>
+            <input
+              type="checkbox"
+              checked={selectedCategories.includes(cat)}
+              onChange={() => handleCategoryChange(cat)}
+            />
+            #{cat}
+          </CategoryLabel>
+        ))}
+      </FilterBar>
       <h2>Shopping List with {unpurchasedItems.length} items</h2>
       {unpurchasedItems.length === 0 ? (
         <p>All done ;) No items on Shopping List. Add new items.</p>
