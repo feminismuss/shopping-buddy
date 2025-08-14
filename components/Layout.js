@@ -10,13 +10,15 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a:hover {
-    color: #77af46ff;
+    color: #96BF8A;
   } 
 
   h2 {
   font-weight: 500;
   font-size: 1.5rem;
   padding: 0.75rem
+  color:  #00412E;
+  margin-left: 10px;
   }
 `;
 
@@ -26,7 +28,8 @@ const Main = styled.main`
   margin-top: 5rem;
   padding: 0.5rem;
   position: relative;
-  width: 95%;
+  width: 100%;
+  background-color: #E8EAE5;
 `;
 
 export default function Layout({ children }) {

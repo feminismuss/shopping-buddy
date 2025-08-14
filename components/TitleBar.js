@@ -6,13 +6,12 @@ const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #9bcdacff; 
-  color: black;
+  background-color: #96BF8A; 
+  color: #ffff;
   padding: 20px 20px;
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 `;
 

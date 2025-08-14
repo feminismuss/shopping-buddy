@@ -4,12 +4,12 @@ import { Circle, CheckCircle2 } from "lucide-react";
 
 const PreviewItem = styled.div`
   display: block;
-  border: 1px solid ${(props) => (props.$purchased ? "#bbf7d0" : "grey")};
+  border: 1px solid ${(props) => (props.$purchased ? "#96BF8A" : "grey")};
   border-radius: 0.4rem;
   padding: 0.75rem;
   margin-bottom: 0.1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   background-color: ${(props) => (props.$purchased ? "#f0fdf4" : "white")};
+  width: 95%;
 `;
 const ItemContent = styled.div`
   display: flex;
