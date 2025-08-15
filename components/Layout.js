@@ -13,6 +13,13 @@ const GlobalStyles = createGlobalStyle`
     color: #96BF8A;
   } 
 
+p {
+  text-decoration: none;
+  font-weight: 500;
+    color:  #00412E;
+      margin-left: 10px;
+  }
+
   h2 {
   font-weight: 500;
   font-size: 1.5rem;
@@ -29,7 +36,7 @@ const Main = styled.main`
   padding: 0.5rem;
   position: relative;
   width: 100%;
-  background-color: #E8EAE5;
+  background-color: #e8eae5;
 `;
 
 export default function Layout({ children }) {
